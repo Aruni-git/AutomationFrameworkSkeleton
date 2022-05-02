@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
@@ -9,7 +10,7 @@ public class LoginPage extends BasePage {
     WebElement emailAddress;
     WebElement invalidDomainError;
     WebElement errorForInvalidEmailAddress;
-    By elementUserName = By.xpath("//input[@id='user_email']");
+    By elementUserName = By.xpath("//input[@id='login-username']");
 
     public LoginPage enterUserName(String userName) {
         try {
@@ -18,6 +19,7 @@ public class LoginPage extends BasePage {
             emailAddress = driver.findElement(elementUserName);
             emailAddress.clear();
             emailAddress.sendKeys(userName);
+            emailAddress.sendKeys(Keys.ENTER);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -15,39 +15,36 @@ import java.util.Set;
 
 public class DataProviders extends BaseTest {
 
-    @DataProvider(name = "dp_tc_verifyLogin")
-    public static Object[][] dp_tc_verifyLogin() {
+    @DataProvider
+    public Object[] dp_tc_verifyLogin() {
         JSONParser parser = new JSONParser();
         JSONObject jsonObject = null;
 
         // Read JSON file
         try {
-            Object obj = parser.parse(new FileReader("src/main/resources/testData.json"));
+            Object obj = parser.parse(new FileReader("C:\\Users\\agunapala\\IdeaProject\\AutomationFrameworkSkeleton\\src\\main\\resources\\dataProvidersJsons\\dp_tc_verifyLogin.json"));
             jsonObject = (JSONObject) obj;
         } catch (IOException | ParseException exception) {
             exception.printStackTrace();
         }
-
         // Array to store JSON data
         Object[] data = new Object[1];
 
         // Store JSON data as key/value pairs in a hashMap
-        HashMap<Object, String> hashMap = new LinkedHashMap<>();
+        HashMap<String, String> hashMap = new LinkedHashMap<>();
         if (jsonObject != null) {
-            Set jsonObjKeys = jsonObject.keySet();
-            for (Object jsonObjKey : jsonObjKeys) {
+            Set<String> jsonObjKeys = jsonObject.keySet();
+            for (String jsonObjKey : jsonObjKeys) {
                 hashMap.put(jsonObjKey, (String) jsonObject.get(jsonObjKey));
             }
         } else {
             log.error("Error retrieving JSON data");
             throw new RuntimeException();
         }
-
         // Store HashMap in an array and return array
         data[0] = hashMap;
-        return (Object[][]) data[0];
+        return data;
     }
-
     @DataProvider
     public Object[][] dataProvider2() {
         JSONParser parser = new JSONParser();
