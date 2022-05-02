@@ -20,7 +20,7 @@ public class LoginPage extends BasePage {
             emailAddress.clear();
             emailAddress.sendKeys(userName);
             emailAddress.sendKeys(Keys.ENTER);
-
+System.out.println("Success");
         } catch (Exception e) {
             e.printStackTrace();
         }
